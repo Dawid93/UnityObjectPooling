@@ -84,7 +84,9 @@ namespace ObjectPool
         public void ReturnToPool(BasePoolObject basePoolObject)
         {
             basePoolObject.OnReturn();
-            basePoolObject.transform.SetParent(null);
+            Transform poolTransform = basePoolObject.transform;
+            poolTransform.SetParent(null);
+            poolTransform.position = spawnPos;
             basePoolObject.gameObject.SetActive(false);
         }
     }
